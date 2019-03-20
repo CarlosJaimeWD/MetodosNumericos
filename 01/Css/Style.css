@@ -8,20 +8,104 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    font-family: Ubuntu Light;
 }
 
 #globalContainer {
     width: 100%;
     height: 100%;
-    border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #mainContainer {
-    width: 0;
-    height: 0;
+    width: 0px;
+    height: 0px;
     overflow: hidden;
-    background: rgba(33, 33, 33, 0.90);
+    padding: 15px 0;
+    background: rgba(33, 33, 33,1);
+    opacity: 0;
+    border-radius: 10px;
 }
+
+#titleBox {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 10px;
+    color: #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+#formBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+#form {
+    width: 35%;
+    height: 100%;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+    position: relative;
+}
+
+#inputsBox {
+    width: 100%;
+}
+
+#btnCalculate {
+    width: 150px;
+    height: 40px;
+    border-radius: 25px;
+    color: #fff;
+    background: #00b8fc;
+    border: none;
+    outline: none;
+}
+
+#checkBox {
+    float: left;
+    position: relative;
+    width: 85%;
+    margin: 15px 7.5%;
+    color: #aaa;
+}
+
+#outputBox {
+    width: 65%;
+    height: 100%;
+    padding: 15px 25px;
+}
+
+#output {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+}
+
+#iterationsBox {
+    width: 100%;
+    height: calc(100% - 40px);
+    background: rgba(255,255,255,0.8);
+}
+
+:focus{outline: none;}
+
+.col-3{float: left; width: 85%; margin: 20px 7.5%; position: relative;z-index: 0;} /* necessary to give position: relative to parent. */
+input[type="number"]{font-size: 15px/24px ; color: #fff; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+
+.effect-16 {border: 0; padding: 12px 0; border-bottom: 1px solid #777; background-color: transparent;}
+
+.effect-16 ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #00b8fc; transition: 0.4s;}
+.effect-16:focus ~ .focus-border,
+.has-content.effect-16 ~ .focus-border{width: 100%; transition: 0.4s;}
+.effect-16 ~ label{position: absolute; left: 5px; width: 100%; top: 9px; color: #777; transition: 0.3s; z-index: -1; letter-spacing: 0.5px;}
+.effect-16:focus ~ label, .has-content.effect-16 ~ label{left: 0;top: -14px; font-size: 15px; color: #00b8fc; transition: 0.3s;}
+

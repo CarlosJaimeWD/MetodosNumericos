@@ -149,9 +149,8 @@
     left: 0;
     right: 0;
     margin-top: -80px;
-    font-size: 50px;
+    font-size: 70px;
     text-align: center;
-    letter-spacing: 20px;
     padding-left: 20px;
     background: -webkit-linear-gradient(white, #dbdde0, #38495a);
     -webkit-background-clip: text;
@@ -211,13 +210,13 @@
       opacity: 0;
     }
     30%, 80% {
-      letter-spacing: 40px;
+      letter-spacing: 20px;
       padding-left: 40px;
       transform: translateY(0px);
       opacity: 1;
     }
     92%, 100% {
-      letter-spacing: 35px;
+      letter-spacing: 15px;
       padding-left: 35px;
       transform: translateY(-4px);
       opacity: 0;

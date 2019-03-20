@@ -39,8 +39,39 @@
 
     <main id="globalContainer">
         <div id="mainContainer">
-            <div id="titleBox">Metodos Numericos - </div>
-            <div id="formBox"></div>
+            <!--<div id="titleBox">Metodos Numericos - Metodo iteratico para calcular √c</div>-->
+            <div id="formBox">
+                <form id="form">
+                    <div id="inputsBox">
+                        <div class="col-3 input-effect">
+                            <input class="effect-16" type="number" id="numberToSearch">
+                            <label>Numero a buscar</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="col-3 input-effect">
+                            <input class="effect-16" type="number" id="numberRound">
+                            <label>N° de decimales</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="col-3 input-effect">
+                            <input class="effect-16" type="number" id="percentageError">
+                            <label>% de error</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <!--<div id="checkBox">
+                            <input type="checkbox" name="" id="showIterations">
+                            <label for="showIterations">Mostrar iteraciones</label>
+                        </div>-->
+                    </div>
+
+                    <input type="button" value="Calcular" id="btnCalculate">
+                </form>
+
+                <div id="outputBox">
+                    <div id="output"></div>
+                    <div id="iterationsBox"></div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -59,18 +90,36 @@
              setTimeout(function(){ 
                 $("#mainContainer").animate({
                     width: '65%',
-                    height: '60%'
+                    height: '60%',
+                    opacity: '1'
                 }, 'slow');
              }, 6700);
+
+             $(".col-3 input").val("");
+            $(".input-effect input").focusout(function(){
+                if($(this).val() != ""){
+                    $(this).addClass("has-content");
+                }else{
+                    $(this).removeClass("has-content");
+                }
+            })
         });
 
-        $("#submit").click(function() {
+        $("#btnCalculate").click(function() {
             var numberToSearch = $("#numberToSearch").val();
-            var epsilon = $("#epsilon").val();
-            var numberInitial = $("#numberInitial").val();
-            
-            
-            //console.log("numberToSearch: " + numberToSearch + ", numberInitial: " + numberInitial + ", epsilon: " + epsilon);            
+            var percentageError = $("#percentageError").val();
+            var numberRound = $("#numberRound").val();
+    
+            console.log("numberToSearch: " + numberToSearch + ", numberRound: " + numberRound + ", percentageError: " + percentageError);            
+
+            $.ajax ({
+                url: "Php/Function.php",
+                method: "POST",
+                data: ({numberToSearch:numberToSearch, numberRound:numberRound, percentageError:percentageError}),
+                success: function(result) {
+                    $("#output").html(result);
+                }
+            });            
         });
     </script>
 </body>
