@@ -57,7 +57,7 @@
                             <input type="checkbox" id="checkNumberRound">
                         </div>
                         <div class="col-3 input-effect">
-                            <input class="effect-16" type="number" id="percentageError">
+                            <input class="effect-16" type="number" id="percentageError" max="0">
                             <label>% de error *</label>
                             <span class="focus-border"></span>
                         </div>
@@ -136,20 +136,24 @@
             var numberRound = $("#numberRound").val();
             var numberInitial = $("#numberInitial").val();
     
-            if (numberToSearch === "" || percentageError === "") {
-                alert("Llene los campos necesarios marcados con un *");   
+            if (percentageError == 0) {
+                alert("El % de error no puede ser igual a 0");
             } else {
-                console.log("numberToSearch: " + numberToSearch + ", numberRound: " + numberRound + ", percentageError: " + percentageError);            
+                if (numberToSearch === "" || percentageError === "") {
+                    alert("Llene los campos necesarios marcados con un *");   
+                } else {
+                    console.log("numberToSearch: " + numberToSearch + ", numberRound: " + numberRound + ", percentageError: " + percentageError);            
 
-                $.ajax ({
-                    url: "Php/Function.php",
-                    method: "POST",
-                    data: ({numberToSearch:numberToSearch, numberRound:numberRound, percentageError:percentageError, numberInitial:numberInitial}),
-                    success: function(result) {
-                        $("#output").html(result);
-                        $("#iterationsBox").load("Php/output.txt");
-                    }
-                });       
+                    $.ajax ({
+                        url: "Php/Function.php",
+                        method: "POST",
+                        data: ({numberToSearch:numberToSearch, numberRound:numberRound, percentageError:percentageError, numberInitial:numberInitial}),
+                        success: function(result) {
+                            $("#output").html(result);
+                            $("#iterationsBox").load("Php/output.txt");
+                        }
+                    });       
+                }
             }
                  
         });
