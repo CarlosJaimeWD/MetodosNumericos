@@ -10,18 +10,6 @@
     <link rel="stylesheet" href="Css/Background.css">
 </head>
 <body>
-    <!--<main class="main">
-        <label for="">Valor C</label>
-        <input type="number" id="numberToSearch" value="27">
-        <label for="">Valor Inicial</label>
-        <input type="number" id="numberInitial" value="20">
-        <label for="">Numero de decimales</label>
-        <input type="number" id="numeroDecimales">
-        <label for="">% Error</label>
-        <input type="number" id="epsilon" value=".005">
-        <button type="submit" id="submit">Calcular</button>
-    </main>-->
-
     <!-- Background elements -->
     <div id="stars"></div>
     <div id="stars2"></div>
@@ -37,9 +25,9 @@
         <span>Jaime</span>
     </div>
 
+    <!-- program elements -->
     <main id="globalContainer">
         <div id="mainContainer">
-            <!--<div id="titleBox">Metodos Numericos - Metodo iteratico para calcular √c</div>-->
             <div id="formBox">
                 <form id="form">
                     <div id="inputsBox">
@@ -139,6 +127,9 @@
             var percentageError = $("#percentageError").val();
             var numberRound = $("#numberRound").val();
             var numberInitial = $("#numberInitial").val();
+            $("#output").html("");
+            $("#iterationsBox").html("");
+            $("#output").html("Calculando...");
     
             if (percentageError == 0) {
                 alert("El % de error no puede ser igual a 0");
@@ -153,6 +144,7 @@
                         method: "POST",
                         data: ({numberToSearch:numberToSearch, numberRound:numberRound, percentageError:percentageError, numberInitial:numberInitial}),
                         success: function(result) {
+                            $("#output").html("");
                             $("#output").html(result);
                             $("#iterationsBox").load("Php/output.txt");
                         }

@@ -15,7 +15,7 @@
         $relativeError = abs((($x - $xInitial) / $x) * 100);
 
         $output .= "X0:  ".$x.", Error: ".$relativeError." </br>";
-        $i= 0;
+        $i= 1;
         while ($relativeError >= $percentageError) {
             $x1 = $x;
             $x = .5*($x + ($numberToSearch / $x));
@@ -29,7 +29,7 @@
         $relativeError = round(abs((($x - $xInitial) / $x) * 100), $numberRound);
 
         $output .= "X0:  ".$x.", Error: ".$relativeError." </br>";
-        $i= 0;
+        $i= 1;
         while ($relativeError >= $percentageError) {
             $x1 = $x;
             $x = round(.5*($x + ($numberToSearch / $x)), $numberRound);
