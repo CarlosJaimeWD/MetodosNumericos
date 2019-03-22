@@ -32,7 +32,7 @@
                 <form id="form">
                     <div id="inputsBox">
                         <div class="col-3 input-effect">
-                            <input class="effect-16" type="number" id="numberToSearch">
+                            <input class="effect-16" type="number" id="numberToSearch" min="1">
                             <label>Numero a buscar *</label>
                             <span class="focus-border"></span>
                         </div>
@@ -127,16 +127,21 @@
             var percentageError = $("#percentageError").val();
             var numberRound = $("#numberRound").val();
             var numberInitial = $("#numberInitial").val();
-            $("#output").html("");
-            $("#iterationsBox").html("");
-            $("#output").html("Calculando...");
+            
     
             if (percentageError == 0) {
                 alert("El % de error no puede ser igual a 0");
-            } else {
+            } else if (numberToSearch <= 0) {
+                alert("Ingrese un numero mayor que 0 en el campo numero a buscar");
+            } else if (Math.floor(numberToSearch) != numberToSearch) {
+                alert("Ingrese un numero entero en el campo numero a buscar");
+            }else {
                 if (numberToSearch === "" || percentageError === "") {
                     alert("Llene los campos necesarios marcados con un *");   
                 } else {
+                    $("#output").html("");
+                    $("#iterationsBox").html("");
+                    $("#output").html("Calculando...");
                     console.log("numberToSearch: " + numberToSearch + ", numberRound: " + numberRound + ", percentageError: " + percentageError);            
 
                     $.ajax ({

@@ -14,28 +14,28 @@
         $x = .5*($xInitial + ($numberToSearch / $xInitial));
         $relativeError = abs((($x - $xInitial) / $x) * 100);
 
-        $output .= "X0:  ".$x.", Error: ".$relativeError." </br>";
+        $output .= "X0:  ".$x.", Error: ".$relativeError." %</br>";
         $i= 1;
         while ($relativeError >= $percentageError) {
             $x1 = $x;
             $x = .5*($x + ($numberToSearch / $x));
             $relativeError = abs((($x - $x1) / $x) * 100);
 
-            $output .= "X".$i.":  ".$x.", Error: ".$relativeError." </br>";
+            $output .= "X".$i.":  ".$x.", Error: ".$relativeError." %</br>";
             $i++;
         }
     } else {
         $x = round(.5*($xInitial + ($numberToSearch / $xInitial)), $numberRound);
         $relativeError = round(abs((($x - $xInitial) / $x) * 100), $numberRound);
 
-        $output .= "X0:  ".$x.", Error: ".$relativeError." </br>";
+        $output .= "X0:  ".$x.", Error: ".$relativeError." %</br>";
         $i= 1;
         while ($relativeError >= $percentageError) {
             $x1 = $x;
             $x = round(.5*($x + ($numberToSearch / $x)), $numberRound);
             $relativeError = round(abs((($x - $x1) / $x) * 100), $numberRound);
 
-            $output .= "X".$i.":  ".$x.", Error: ".$relativeError." </br>";
+            $output .= "X".$i.":  ".$x.", Error: ".$relativeError." %</br>";
             $i++;
         }
     }
