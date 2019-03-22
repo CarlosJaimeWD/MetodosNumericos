@@ -45,23 +45,30 @@
                     <div id="inputsBox">
                         <div class="col-3 input-effect">
                             <input class="effect-16" type="number" id="numberToSearch">
-                            <label>Numero a buscar</label>
+                            <label>Numero a buscar *</label>
                             <span class="focus-border"></span>
                         </div>
-                        <div class="col-3 input-effect">
-                            <input class="effect-16" type="number" id="numberRound">
-                            <label>N° de decimales</label>
-                            <span class="focus-border"></span>
+                        <div class="col-3 col-5">
+                            <div class="col-4 input-effect">
+                                <input class="effect-16" type="number" id="numberRound" value="4" disabled="disabled">
+                                <label>N° de decimales</label>
+                                <span class="focus-border"></span>
+                            </div>
+                            <input type="checkbox" id="checkNumberRound">
                         </div>
                         <div class="col-3 input-effect">
                             <input class="effect-16" type="number" id="percentageError">
-                            <label>% de error</label>
+                            <label>% de error *</label>
                             <span class="focus-border"></span>
                         </div>
-                        <!--<div id="checkBox">
-                            <input type="checkbox" name="" id="showIterations">
-                            <label for="showIterations">Mostrar iteraciones</label>
-                        </div>-->
+                        <div class="col-3 col-5">
+                            <div class="col-4 input-effect">
+                                <input class="effect-16" type="number" id="numberInitial" value="4" disabled="disabled">
+                                <label>Numero inicial</label>
+                                <span class="focus-border"></span>
+                            </div>
+                            <input type="checkbox" id="checkNumberInitial">
+                        </div>
                     </div>
 
                     <input type="button" value="Calcular" id="btnCalculate">
@@ -103,23 +110,48 @@
                     $(this).removeClass("has-content");
                 }
             })
+
+            $("#checkNumberRound").click(function () {
+                if ($(this).is(":checked")) {
+                    $("#numberRound").removeAttr("disabled");
+                    $("#numberRound").focus();
+                } else {
+                    $("#numberRound").attr("disabled", "disabled");
+                }
+            })
+
+            $("#checkNumberInitial").click(function () {
+                if ($(this).is(":checked")) {
+                    $("#numberInitial").removeAttr("disabled");
+                    $("#numberInitial").focus();
+                } else {
+                    $("#numberInitial").attr("disabled", "disabled");
+                }
+            })
         });
 
         $("#btnCalculate").click(function() {
             var numberToSearch = $("#numberToSearch").val();
             var percentageError = $("#percentageError").val();
             var numberRound = $("#numberRound").val();
+            var numberInitial = $("#numberInitial").val();
     
-            console.log("numberToSearch: " + numberToSearch + ", numberRound: " + numberRound + ", percentageError: " + percentageError);            
+            if (numberToSearch === "" || percentageError === "") {
+                alert("Llene los campos necesarios marcados con un *");   
+            } else {
+                console.log("numberToSearch: " + numberToSearch + ", numberRound: " + numberRound + ", percentageError: " + percentageError);            
 
-            $.ajax ({
-                url: "Php/Function.php",
-                method: "POST",
-                data: ({numberToSearch:numberToSearch, numberRound:numberRound, percentageError:percentageError}),
-                success: function(result) {
-                    $("#output").html(result);
-                }
-            });            
+                $.ajax ({
+                    url: "Php/Function.php",
+                    method: "POST",
+                    data: ({numberToSearch:numberToSearch, numberRound:numberRound, percentageError:percentageError, numberInitial:numberInitial}),
+                    success: function(result) {
+                        $("#output").html(result);
+                        $("#iterationsBox").load("Php/output.txt");
+                    }
+                });       
+            }
+                 
         });
     </script>
 </body>
