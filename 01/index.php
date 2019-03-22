@@ -117,6 +117,8 @@
                     $("#numberRound").focus();
                 } else {
                     $("#numberRound").attr("disabled", "disabled");
+                    $("#numberRound").val("");
+                    $("#numberRound").blur();
                 }
             })
 
@@ -126,6 +128,8 @@
                     $("#numberInitial").focus();
                 } else {
                     $("#numberInitial").attr("disabled", "disabled");
+                    $("#numberInitial").val("");
+                    $("#numberInitial").blur();
                 }
             })
         });
