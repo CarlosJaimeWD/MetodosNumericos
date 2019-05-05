@@ -39,9 +39,10 @@
             $i++;
         }
     }
-    file_put_contents("output.txt", "");
+    /*file_put_contents("output.txt", "");
     $myfile = fopen("output.txt", "w") or die("Unable to open file!");
     fwrite($myfile, $output);
-    fclose($myfile);
-    echo "√x = ".$x."";
+    fclose($myfile);*/
+    $output .= "<div id='output'>√x = ".$x."</div>";
+    echo $output;
 ?>

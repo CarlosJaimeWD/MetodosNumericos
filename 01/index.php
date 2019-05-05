@@ -63,7 +63,7 @@
                 </form>
 
                 <div id="outputBox">
-                    <div id="output"></div>
+                    <!--<div id="output"></div>-->
                     <div id="iterationsBox"></div>
                 </div>
             </div>
@@ -150,8 +150,9 @@
                         data: ({numberToSearch:numberToSearch, numberRound:numberRound, percentageError:percentageError, numberInitial:numberInitial}),
                         success: function(result) {
                             $("#output").html("");
-                            $("#output").html(result);
-                            $("#iterationsBox").load("Php/output.txt");
+                            //$("#output").html(result);
+                            $("#output").html("");
+                            $("#iterationsBox").html(result);
                         }
                     });       
                 }
