@@ -1,0 +1,170 @@
+* {
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Ubuntu Light;
+}
+.inputsBoxBox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.functionTypeBox {
+    width: 100px;
+    display: flex;
+    padding-left: 5px;
+    flex-wrap: wrap;
+}
+
+.intervalBox {
+    display: flex;
+}
+
+.functionTypeBox > div {
+    width: 100%;
+    height: 20px;
+    display: flex;
+}
+
+.functionTypeBox > div > input {
+    width: 20px;
+    height: 20px;
+}
+
+#globalContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mainContainer {
+    width: 50%;
+    height: 65%;
+    overflow: hidden;
+    padding: 15px 0;
+    background: #333;
+    border-radius: 10px;
+}
+
+#titleBox {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 10px;
+    color: #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+#formBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#form {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+    position: relative;
+}
+
+#inputsBox {
+    width: 100%;
+}
+
+#btnCalculate {
+    width: 150px;
+    height: 40px;
+    border-radius: 25px;
+    color: #fff;
+    background: #00b8fc;
+    font-size: 17px;
+    border: none;
+    outline: none;
+}
+
+#checkBox {
+    float: left;
+    position: relative;
+    width: 85%;
+    margin: 15px 7.5%;
+    color: #aaa;
+}
+
+#outputBox {
+    width: 100%;
+    height: 70%;
+    padding: 15px 25px;
+}
+
+#buttonSubmitBox {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#output {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #333;
+    font-size: 35px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+#iterationsBox {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    color: #333;
+    padding: 10px;
+    overflow: auto;
+}
+
+#inputsBox {
+    width: calc(14% - 20px);
+    margin: 0 10px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+#inputsBox > input {
+    width: calc(100% - 35px);
+}
+
+#intervalA, #intervalB, #numberRound , #intervalA1, #intervalA2, #intervalB1, #intervalB2{
+    width: 50px;
+}
+
+#inputsBox2 {
+    margin: 0 20px;
+}
+
+input {
+    font-size: 17px;
+}
+
+input, label {
+    height: 30px;
+    line-height: 30px;
+}
