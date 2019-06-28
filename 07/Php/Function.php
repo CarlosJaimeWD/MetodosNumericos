@@ -25,34 +25,40 @@
     $midlePoint = round(midlePoint($intervalA, $intervalB), $numberRound);
     $sd1 = syntheticDivision($intervalA, $array);
     $sd2 = syntheticDivision($intervalB, $array);
-    $x = syntheticDivision(1.5 , $array);
-                    $xr = syntheticDivision(1.5 , $x);
-                    
-    $output .= "".print_r($x)."";
-    $output .= "".print_r($xr)."";
-    /*if ($sd1 > 0 && $sd2 < 0 || $sd1 < 0 && $sd2 > 0) {
-                $intervalA = $sd1;
-                $intervalB = $sd2;
+    $output .= "".print_r($sd1)."</br>";
+    $output .= "".print_r($sd2)."</br>";
+    //$intervalA = array_pop($sd1);
+    //$intervalB = array_pop($sd2);
+    if ($intervalA == null && $intervalB == null) {
+        $array3 = calcularMultiplos($x0);
+        $output .= "".print_r($array3)."</br>";
+    }
+    if (true/*$intervalA > 0 && $intervalB < 0 || $intervalA < 0 && $intervalB > 0*/) {
                 $midlePoint = round(midlePoint($intervalA, $intervalB), $numberRound);
                 $fMidle = 0;
                 $i = 0;
     
                 do {
                     $x = syntheticDivision($midlePoint, $array);
-                    $xr = syntheticDivision($midlePoint, $x);
+                    $xx = round(array_pop($x), $numberRound);
+                    $xr = syntheticDivision($midlePoint, array_reverse($x));
+                    $xxr = round(array_pop($xr), $numberRound);
 
-                    $xf = ($midlePoint) - (($x[]) / ());
+                    $xf = round(($midlePoint) - (($xx) / ($xxr)), $numberRound);
     
-                    $relativeError = round((abs(($fMidle - ($fMidleBefore)) / $fMidle)) * 100, $numberRound);
-                    $relativeError2 = round(abs($fMidle - $fMidleBefore), $numberRound);
+                    //$relativeError = .005;
+                    $relativeError = round((abs(($xf - ($midlePoint)) / $xf)) * 100, $numberRound);
+                    //$relativeError2 = round(abs($fMidle - $fMidleBefore), $numberRound);
     
-                    $output .= "fMidle (".$midlePoint."): " . $fMidle . "</br>";
-                    $output .= "Error ".$i.": " . $relativeError . " %, ".$relativeError2."</br>";
-                    $output .= "f(A): " . $fA . ",  f(B): ".$fB."</br>";
+                    $output .= "middlePoint: ".$midlePoint."</br>";
+                    $output .= "Error ".$i.": " . $relativeError . " %</br>";
+                    $output .= "X: ".$xf."</br>";
+                    $output .= "R1: ".$xx."</br>";
+                    $output .= "R2: ".$xxr."</br>";
                     $output .= "</br>";
     
                     $i++;
-    
+                    $midlePoint = $xf;
                 } while ($relativeError >= $percentageError); 
         $output .= "<div id='output'>x: ".$midlePoint."</div>";
     } else if ($sd1 == 0) {
@@ -61,7 +67,7 @@
         //encontro la respuesta x en el segundo intervalo
     } else {
         $output .= "la respuesta no esta dentro del intervalo";
-    } */
+    } 
     /*i*/
     echo $output;
     
@@ -99,6 +105,21 @@
             $i2 ++;
         }
         return $array2;
+    }
+
+    function calcularMultiplos ($x) {
+        $f = array();
+        for ($i=($x*-1); $i < 0 ; $i--) { 
+            if (($x % $i) == 0) {
+                array_push($f, $i);
+            }
+        }
+        for ($i=$x; $i > 0 ; $i--) { 
+            if (($x % $i) == 0) {
+                array_push($f, $i);
+            }
+        }
+        return $f;
     }
 
 
