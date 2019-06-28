@@ -1,4 +1,7 @@
 <?php
+    error_reporting(0);
+    ini_set('display_errors', 0);
+
     $intervalA = $_POST["intervalA"];
     $intervalB = $_POST["intervalB"];
     $percentageError = $_POST["percentageError"];
@@ -25,15 +28,55 @@
     $midlePoint = round(midlePoint($intervalA, $intervalB), $numberRound);
     $sd1 = syntheticDivision($intervalA, $array);
     $sd2 = syntheticDivision($intervalB, $array);
-    $output .= "".print_r($sd1)."</br>";
-    $output .= "".print_r($sd2)."</br>";
+    //$output .= "".print_r($sd1)."</br>";
+    //$output .= "".print_r($sd2)."</br>";
     //$intervalA = array_pop($sd1);
     //$intervalB = array_pop($sd2);
     if ($intervalA == null && $intervalB == null) {
-        $array3 = calcularMultiplos($x0);
-        $output .= "".print_r($array3)."</br>";
-    }
-    if (true/*$intervalA > 0 && $intervalB < 0 || $intervalA < 0 && $intervalB > 0*/) {
+        $multiplos = calcularMultiplos($x0);
+        //$output .= "multiplos: ".print_r($multiplos)."</br>";
+        
+        for ($i=0; $i < sizeof($multiplos); $i++) { 
+            $intervalA = $multiplos[$i];
+            $intervalB = $multiplos[($i + 1)];
+
+            $sd1 = syntheticDivision($intervalA, $array);
+            $sd2 = syntheticDivision($intervalB, $array);
+
+            if ($sd1[sizeof($sd1) -1] < 0 && $sd2[sizeof($sd2) -1] > 0) {
+                $output .= "intervalA: ".$intervalA."</br>";
+                $output .= "intervalB: ".$intervalB."</br>";
+                $output .= "</br>";
+                break;
+            }
+        }
+
+        $midlePoint = round(midlePoint($intervalA, $intervalB), $numberRound);
+                $fMidle = 0;
+                $i = 0;
+    
+                do {
+                    $x = syntheticDivision($midlePoint, $array);
+                    $xx = round(array_pop($x), $numberRound);
+                    $xr = syntheticDivision($midlePoint, array_reverse($x));
+                    $xxr = round(array_pop($xr), $numberRound);
+
+                    $xf = round(($midlePoint) - (($xx) / ($xxr)), $numberRound);
+    
+                    $relativeError = round((abs(($xf - ($midlePoint)) / $xf)) * 100, $numberRound);
+    
+                    $output .= "middlePoint: ".$midlePoint."</br>";
+                    $output .= "Error ".$i.": " . $relativeError . " %</br>";
+                    $output .= "X: ".$xf."</br>";
+                    $output .= "R1: ".$xx."</br>";
+                    $output .= "R2: ".$xxr."</br>";
+                    $output .= "</br>";
+    
+                    $i++;
+                    $midlePoint = $xf;
+                } while ($relativeError >= $percentageError); 
+        $output .= "<div id='output'>x: ".$midlePoint."</div>";
+    } else if ($intervalA != null && $intervalB != null/*$intervalA > 0 && $intervalB < 0 || $intervalA < 0 && $intervalB > 0*/) {
                 $midlePoint = round(midlePoint($intervalA, $intervalB), $numberRound);
                 $fMidle = 0;
                 $i = 0;
@@ -46,9 +89,7 @@
 
                     $xf = round(($midlePoint) - (($xx) / ($xxr)), $numberRound);
     
-                    //$relativeError = .005;
                     $relativeError = round((abs(($xf - ($midlePoint)) / $xf)) * 100, $numberRound);
-                    //$relativeError2 = round(abs($fMidle - $fMidleBefore), $numberRound);
     
                     $output .= "middlePoint: ".$midlePoint."</br>";
                     $output .= "Error ".$i.": " . $relativeError . " %</br>";
@@ -109,14 +150,27 @@
 
     function calcularMultiplos ($x) {
         $f = array();
-        for ($i=($x*-1); $i < 0 ; $i--) { 
-            if (($x % $i) == 0) {
-                array_push($f, $i);
+        if ($x > 0) {
+            for ($i=($x * -1); $i < 0 ; $i++) { 
+                if (($x % $i) == 0) {
+                    array_push($f, $i);
+                }
             }
-        }
-        for ($i=$x; $i > 0 ; $i--) { 
-            if (($x % $i) == 0) {
-                array_push($f, $i);
+            for ($i=1; $i <= $x ; $i++) { 
+                if (($x % $i) == 0) {
+                    array_push($f, $i);
+                }
+            }
+        } else {
+            for ($i=$x; $i < 0 ; $i++) { 
+                if (($x % $i) == 0) {
+                    array_push($f, $i);
+                }
+            }
+            for ($i=1; $i <= ($x *-1) ; $i++) { 
+                if (($x % $i) == 0) {
+                    array_push($f, $i);
+                }
             }
         }
         return $f;
