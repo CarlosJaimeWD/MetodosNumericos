@@ -32,7 +32,7 @@
     //$output .= "".print_r($sd2)."</br>";
     //$intervalA = array_pop($sd1);
     //$intervalB = array_pop($sd2);
-    if ($intervalA == null && $intervalB == null) {
+    if ($intervalA == null && $intervalB == null) { //caclular intervalo automaticamente
         $multiplos = calcularMultiplos($x0);
         //$output .= "multiplos: ".print_r($multiplos)."</br>";
         
@@ -74,6 +74,9 @@
     
                     $i++;
                     $midlePoint = $xf;
+                    if ($i == 101) {
+                        break;
+                    }
                 } while ($relativeError >= $percentageError); 
         $output .= "<div id='output'>x: ".$midlePoint."</div>";
     } else if ($intervalA != null && $intervalB != null/*$intervalA > 0 && $intervalB < 0 || $intervalA < 0 && $intervalB > 0*/) {
@@ -100,6 +103,9 @@
     
                     $i++;
                     $midlePoint = $xf;
+                    if ($i == 101) {
+                        break;
+                    }
                 } while ($relativeError >= $percentageError); 
         $output .= "<div id='output'>x: ".$midlePoint."</div>";
     } else if ($sd1 == 0) {
